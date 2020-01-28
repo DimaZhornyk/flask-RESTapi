@@ -33,4 +33,4 @@ api.add_resource(StoreList, '/stores/')
 
 db.init_app(app)
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
