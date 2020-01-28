@@ -1,3 +1,5 @@
+import os
+
 from datetime import timedelta
 from db import db
 
@@ -12,7 +14,7 @@ from resources.store import Store, StoreList
 from templates import *
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'Flask'
 app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=1800)
@@ -31,9 +33,12 @@ api.add_resource(ItemList, '/items/')
 api.add_resource(UserRegister, '/register/')
 api.add_resource(Store, '/store/<string:name>/')
 api.add_resource(StoreList, '/stores/')
+
+
 @app.route('/')
 def home():
     return render_template('index.html')
+
 
 db.init_app(app)
 if __name__ == '__main__':
