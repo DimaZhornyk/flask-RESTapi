@@ -4,5 +4,5 @@
 ---
 * ### Endpoints:
 * #### /register(POST) example body: {"username": "admin", "password": "admin"}
-* #### /auth(POST)     example body: {"username": "admin", "password": "admin"}, <mark>returns you a JWT token</mark>
+* #### /auth(POST)     example body: {"username": "admin", "password": "admin"}, <span style="background-color: #FFFF00">returns you a JWT token</span>
 * #### /items(GET)     empty body, requires JWT 
