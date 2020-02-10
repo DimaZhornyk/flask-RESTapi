@@ -21,15 +21,9 @@ app.secret_key = 'Flask'
 app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=1800)
 api = Api(app)
 
-
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
-
 jwt = JWTManager(app)
 
-BLACKLIST = { 3}
+BLACKLIST = {3}
 
 
 @jwt.token_in_blacklist_loader
@@ -76,6 +70,5 @@ def home():
     return render_template('index.html')
 
 
-db.init_app(app)
 if __name__ == '__main__':
     app.run(debug=False)
